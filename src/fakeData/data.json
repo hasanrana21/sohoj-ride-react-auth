@@ -1,0 +1,17 @@
+[{
+    "id": 1,
+    "first_name": "CAR",
+    "image": "http://dummyimage.com/121x206.bmp/5fa2dd/ffffff"
+  }, {
+    "id": 2,
+    "first_name": "BIKE",
+    "image": "https://ibb.co/8gGTfQB"
+  }, {
+    "id": 3,
+    "first_name": "BUS",
+    "image": "https://ibb.co/cT3Q2W7"
+  }, {
+    "id": 4,
+    "first_name": "TRAIN",
+    "image": "http://dummyimage.com/229x159.jpg/ff4444/ffffff"
+  }]
