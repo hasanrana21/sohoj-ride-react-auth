@@ -1,0 +1,11 @@
+.single-card img{
+    width: 200px;
+    height: 150px;
+}
+.single-card{
+    border: 2px solid red;
+    border-radius: 10px;
+    width: 250px;
+    margin: 25px;
+    padding: 15px;
+}

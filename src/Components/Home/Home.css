@@ -1,0 +1,7 @@
+.all-cards{
+    display: flex;
+    padding: 15px;
+    justify-content: center;
+    height: 88vh;
+    padding-top: 150px;
+}
