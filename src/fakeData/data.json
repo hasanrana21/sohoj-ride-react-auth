@@ -1,17 +1,17 @@
 [{
     "id": 1,
-    "first_name": "CAR",
+    "firstName": "CAR",
     "image": "https://i.ibb.co/b5djw5C/Frame-2.png"
   }, {
     "id": 2,
-    "first_name": "BIKE",
+    "firstName": "BIKE",
     "image": "https://i.ibb.co/QX88WnN/Frame.png"
   }, {
     "id": 3,
-    "first_name": "BUS",
+    "firstName": "BUS",
     "image": "https://i.ibb.co/Vx9cSL1/Frame-1.png"
   }, {
     "id": 4,
-    "first_name": "TRAIN",
+    "firstName": "TRAIN",
     "image": "https://i.ibb.co/0J2JtHZ/Group.png"
   }]

@@ -4,13 +4,13 @@ import './Card.css';
 
 const Card = (props) => {
     console.log(props.vehicle);
-    const {first_name, image} = props.vehicle;
+    const {firstName, image} = props.vehicle;
     return (
-        <Link to="/destinate">
+        <Link to={`/destinate/${firstName}`}>
             <div className="single-card">
                 <div>
                     <img src={image} alt=""/>
-                    <h4 className="text-center pt-3 text-warning">{first_name}</h4>
+                    <h4 className="text-center pt-3 text-warning">{firstName}</h4>
                 </div>
             </div>
         </Link>
