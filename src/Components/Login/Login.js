@@ -17,8 +17,15 @@ const Login = () => {
   const location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
 
-  const [user, setUser] = useState({});
-    const { register, handleSubmit, watch, errors } = useForm();
+  const [user, setUser] = useState({
+    isSignedIn : false,
+    name : '',
+    email: '',
+    password: '',
+    error: '',
+    success: false
+  });
+    const { register, errors } = useForm();
     const onSubmit = data => console.log(data);
 
   var gitHubProvider = new firebase.auth.GithubAuthProvider();
@@ -27,8 +34,6 @@ const Login = () => {
     .auth()
     .signInWithPopup(gitHubProvider)
     .then((result) => {
-      var credential = result.credential;
-      var token = credential.accessToken;
       var user = result.user;
       console.log(user);
       setLoggedInUser(user);
@@ -44,21 +49,65 @@ const Login = () => {
     });
   }
 
+const handleBlur = (event) =>{
+  let isFormValid = true;
+  if(event.target.name === "email"){
+    isFormValid = /\S+@\S+\.\S+/.test(event.target.value);
+  }
+  if(event.target.name === "password"){
+    const isPasswordValid = event.target.value.length > 5;
+    const passwordHasNumber = /\d{1}/.test(event.target.value);
+    isFormValid = isPasswordValid && passwordHasNumber;
+  }
+  if(isFormValid){
+    const newUserInfo = {...user};
+    newUserInfo[event.target.name] = event.target.value;
+    setUser(newUserInfo);
+  }
+}
+
+const handleSubmit = event =>{
+  // event.preventDefault();
+  console.log(user.email, user.password);
+  if(user.email && user.password){
+    firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+    .then(res => {
+      console.log(res);
+      const newUserInfo = {...user};
+      newUserInfo.error = '';
+      newUserInfo.success = true;
+      setUser(newUserInfo);
+    })
+    .catch(error => {
+      const newUserInfo = {...user};
+      newUserInfo.error = error.message;
+      newUserInfo.success = false;
+      setUser(newUserInfo);
+    });
+  }
+}
+
 
   return (
     <div class="form-area">
       <form onSubmit={handleSubmit(onSubmit)} class="m-auto">
-        <input name="email" placeholder="Your Email" ref={register({ required: true })} />
+        <input type="text" name="name" onBlur={handleBlur} placeholder="Your Name" />
+        <br/>
+        <input name="email" type="email" onBlur={handleBlur} placeholder="Your Email" ref={register({ required: true })} />
         <br/>
         {errors.email && <span>This Email is required</span>}
         <br/>
-        <input name="password" type="password" placeholder="Your Password" ref={register({ required: true })} />
+        <input name="password" type="password" onBlur={handleBlur} placeholder="Your Password" ref={register({ required: true })} />
         <br/>
-        {errors.password && <span>This Email is required</span>}
+        {errors.password && <span>This Password is required</span>}
         <br/>
         
         <input type="submit" />
       </form>
+      <p style={{color: 'red'}}>{user.error}</p>
+      {
+        user.success && <p style={{color: 'green'}}>User Created Successfully</p>
+      }
       <br/><br/>
       <button onClick={handleGitHubSignIn}>GitHub Sign In</button>
     </div>

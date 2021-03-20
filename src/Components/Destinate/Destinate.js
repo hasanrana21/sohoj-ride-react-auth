@@ -9,7 +9,7 @@ const Destinate = () => {
         setVehicles(fakeData);
     })
     return (
-        <div>
+        <div class="row">
                 {
                     vehicles.map(singleVehicle => <DestinateDetails singleVehicle={singleVehicle} key={singleVehicle.id}></DestinateDetails>)
                 }
