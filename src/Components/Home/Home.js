@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import Header from '../Header/Header';
 import './Home.css';
 import fakeData from '../../fakeData/data.json';
 import Card from '../Card/Card';

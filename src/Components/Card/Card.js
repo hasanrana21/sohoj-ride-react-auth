@@ -6,7 +6,7 @@ const Card = (props) => {
     console.log(props.vehicle);
     const {first_name, image} = props.vehicle;
     return (
-        <Link to="/login">
+        <Link to="/destinate">
             <div className="single-card">
                 <div>
                     <img src={image} alt=""/>

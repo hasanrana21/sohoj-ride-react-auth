@@ -4,8 +4,10 @@
 }
 .single-card{
     border: 2px solid red;
+    background-color: #fff;
     border-radius: 10px;
     width: 250px;
+    height: 250px;
     margin: 25px;
     padding: 15px;
 }
