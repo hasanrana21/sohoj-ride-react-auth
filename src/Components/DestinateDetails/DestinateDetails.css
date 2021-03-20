@@ -1,6 +1,11 @@
 .location-details{
     padding: 40px;
+    visibility: hidden;
 }
 .location-details img{
     width: 50px;
+    margin-right: 7px;
+}
+form span{
+    color: red;
 }
