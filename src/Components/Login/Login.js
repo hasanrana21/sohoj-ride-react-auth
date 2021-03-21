@@ -6,7 +6,6 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
@@ -121,8 +120,6 @@ const updateUserName = name =>{
   return (
     <div class="form-area">
       <h1>Log in/Registration</h1>
-      {/* <input type="checkbox" name="newUser" onChange={() => setNewUser(!newUser)} id=""/>
-      <label htmlFor="newUser">New User Sign {newUser ? 'Up' : 'In'}</label> */}
       <form onSubmit={handleSubmit}>
         {newUser && <input type="text" name="name" onBlur={handleBlur} placeholder="Your name" />}
         <br/>

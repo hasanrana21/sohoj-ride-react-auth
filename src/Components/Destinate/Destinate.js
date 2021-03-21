@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import fakeData from '../../fakeData/data.json';
 import DestinateDetails from '../DestinateDetails/DestinateDetails';
-import map from '../../images/Bg.png';
+import mapImg from '../../images/Map.png';
 import './Destinate.css';
 
 const Destinate = () => {
@@ -25,13 +25,13 @@ const Destinate = () => {
                         <br/>
                         <input name="from" placeholder="Location1" ref={register({ required: true })} />
                         <br/>
-                        {errors.from && <span >Please put info From Where</span>}
+                        {errors.from && <span class="error">Please put info From Where</span>}
                         <br/>
                         <label htmlFor="to">Pick To</label>
                         <br/>
                         <input name="to" placeholder="Location2"  ref={register({ required: true })} />
                         <br/>
-                        {errors.to && <span>Please put info Where to Go</span>}
+                        {errors.to && <span class="error">Please put info Where to Go</span>}
                         <br/>
                         
                         <input type="submit" onClick={()=> setSearchResult(!searchResult)} value="Search" />
@@ -44,7 +44,9 @@ const Destinate = () => {
                     </div>
                 </div>
                 <div class="location-map col-md-8">
-                    <img src={map} alt=""/>
+                    <img src={mapImg} alt=""/>
+                    {/* <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfv9aQI58KZaGfyckjpYAfve80GTLF3xU&callback=initMap"
+                    type="text/javascript"></script> */}
                 </div>
             </div>
             

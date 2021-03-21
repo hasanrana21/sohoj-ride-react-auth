@@ -1,4 +1,6 @@
-
+.error{
+    color: red;
+}
 .locationForm{
     margin: 35px 0;
     margin-left: 11%;
