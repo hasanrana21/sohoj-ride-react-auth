@@ -1,14 +1,17 @@
 .form-area{
-    margin: 100px auto;
+    margin: 40px auto;
     text-align: center;
     background-color: #ddd;
     width: 500px;
     padding: 50px;
+    border-radius: 16px;
+    box-shadow: 5px 5px 25px gray;
 }
 .form-area input{
     margin-bottom: 10px;
     width: 80%;
     padding: 8px 15px;
+    border-radius: 7px;
 }
 .social-button {
     width: 80%;

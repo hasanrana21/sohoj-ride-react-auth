@@ -30,9 +30,9 @@ const DestinateDetails = (props) => {
         <>
             <div class="search-result d-flex">
                 <img src={vehicleImg} alt=""/>
-                <h5>{firstName}</h5>
-                <h5><FontAwesomeIcon icon={faAccessibleIcon} /> 4</h5>
-                <h5>$21</h5>
+                <h6>{firstName}</h6>
+                <h6><FontAwesomeIcon icon={faAccessibleIcon} /> 4</h6>
+                <h6>$21</h6>
             </div>
         </>
     );

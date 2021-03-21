@@ -120,14 +120,15 @@ const updateUserName = name =>{
 
   return (
     <div class="form-area">
+      <h1>Log in/Registration</h1>
       {/* <input type="checkbox" name="newUser" onChange={() => setNewUser(!newUser)} id=""/>
       <label htmlFor="newUser">New User Sign {newUser ? 'Up' : 'In'}</label> */}
       <form onSubmit={handleSubmit}>
         {newUser && <input type="text" name="name" onBlur={handleBlur} placeholder="Your name" />}
         <br/>
-        <input type="email" placeholder="your email" name="email" onBlur={handleBlur} required/>
+        <input type="email" placeholder="Your email" name="email" onBlur={handleBlur} required/>
         <br/>
-        <input type="password" name="password" placeholder="your password" onBlur={handleBlur} id="" required/>
+        <input type="password" name="password" placeholder="Your password" onBlur={handleBlur} id="" required/>
         <br/>
         <input type="submit" value={newUser ? 'Sign Up' : 'Sign In'}/>
         <p>Already have an Account?<a href="#"> <span onClick={()=> setNewUser(!newUser)}>{newUser ? 'Log In' : 'Create New Account'}</span> </a></p>

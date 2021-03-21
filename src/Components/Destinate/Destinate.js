@@ -7,6 +7,7 @@ import './Destinate.css';
 
 const Destinate = () => {
     const [vehicles, setVehicles] = useState([]);
+    const [searchResult, setSearchResult] = useState(false);
 
     useEffect(()=>{
         setVehicles(fakeData);
@@ -33,18 +34,20 @@ const Destinate = () => {
                         {errors.to && <span>Please put info Where to Go</span>}
                         <br/>
                         
-                        <input type="submit" value="Search" />
+                        <input type="submit" onClick={()=> setSearchResult(!searchResult)} value="Search" />
                     </form>
+
+                    <div className="destinate-details-result">
+                        {
+                            searchResult && vehicles.map(singleVehicle => <DestinateDetails singleVehicle={singleVehicle} key={singleVehicle.id}></DestinateDetails>)
+                        }
+                    </div>
                 </div>
                 <div class="location-map col-md-8">
                     <img src={map} alt=""/>
                 </div>
             </div>
-            <div className="destinate-details-result">
-            {
-                vehicles.map(singleVehicle => <DestinateDetails singleVehicle={singleVehicle} key={singleVehicle.id}></DestinateDetails>)
-            }
-            </div>
+            
         </>
     );
 };
