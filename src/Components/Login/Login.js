@@ -17,16 +17,13 @@ const Login = () => {
   const location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
 
+  const [newUser, setNewUser] = useState(false);
   const [user, setUser] = useState({
     isSignedIn : false,
     name : '',
     email: '',
-    password: '',
-    error: '',
-    success: false
+    password: ''
   });
-    const { register, errors } = useForm();
-    const onSubmit = data => console.log(data);
 
   var gitHubProvider = new firebase.auth.GithubAuthProvider();
   const handleGitHubSignIn = () =>{
@@ -67,46 +64,73 @@ const handleBlur = (event) =>{
 }
 
 const handleSubmit = event =>{
-  // event.preventDefault();
+  event.preventDefault();
   console.log(user.email, user.password);
-  if(user.email && user.password){
+  if(newUser && user.email && user.password){
     firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-    .then(res => {
-      console.log(res);
+    .then(res =>{
       const newUserInfo = {...user};
       newUserInfo.error = '';
-      newUserInfo.success = true;
+      newUserInfo.success= true;
       setUser(newUserInfo);
+      updateUserName(user.name);
+      console.log(user.name);
     })
     .catch(error => {
       const newUserInfo = {...user};
       newUserInfo.error = error.message;
-      newUserInfo.success = false;
+      setUser(newUserInfo);
+    });
+  }
+
+  if(!newUser && user.email && user.password){
+    firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+    .then(res =>{
+      const newUserInfo = {...user};
+      newUserInfo.error = '';
+      newUserInfo.success= true;
+      setUser(newUserInfo);
+      console.log('sign in user info', res.user);
+      setLoggedInUser(user);
+      history.replace(from);
+    })
+    .catch(error => {
+      const newUserInfo = {...user};
+      newUserInfo.error = error.message;
       setUser(newUserInfo);
     });
   }
 }
 
+const updateUserName = name =>{
+  var user = firebase.auth().currentUser;
+
+  user.updateProfile({
+    displayName: name
+  }).then(function() {
+    console.log("User Name Successfully Updated");
+  }).catch(function(error) {
+    console.log(error);
+  });
+}
+
 
   return (
     <div class="form-area">
-      <form onSubmit={handleSubmit(onSubmit)} class="m-auto">
-        <input type="text" name="name" onBlur={handleBlur} placeholder="Your Name" />
+      <input type="checkbox" name="newUser" onChange={() => setNewUser(!newUser)} id=""/>
+      <label htmlFor="newUser">New User Sign {newUser ? 'Up' : 'In'}</label>
+      <form onSubmit={handleSubmit}>
+        {newUser && <input type="text" name="name" onBlur={handleBlur} placeholder="Your name" />}
         <br/>
-        <input name="email" type="email" onBlur={handleBlur} placeholder="Your Email" ref={register({ required: true })} />
+        <input type="email" placeholder="your email" name="email" onBlur={handleBlur} required/>
         <br/>
-        {errors.email && <span>This Email is required</span>}
+        <input type="password" name="password" placeholder="your password" onBlur={handleBlur} id="" required/>
         <br/>
-        <input name="password" type="password" onBlur={handleBlur} placeholder="Your Password" ref={register({ required: true })} />
-        <br/>
-        {errors.password && <span>This Password is required</span>}
-        <br/>
-        
-        <input type="submit" />
+        <input type="submit" value={newUser ? 'Sign Up' : 'Sign In'}/>
       </form>
       <p style={{color: 'red'}}>{user.error}</p>
       {
-        user.success && <p style={{color: 'green'}}>User Created Successfully</p>
+        user.success && <p style={{color: 'green'}}>User {newUser ? 'Created' : 'Logged In'} Successfully</p>
       }
       <br/><br/>
       <button onClick={handleGitHubSignIn}>GitHub Sign In</button>

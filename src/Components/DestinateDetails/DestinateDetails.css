@@ -1,14 +1,10 @@
-.location-details{
-    padding: 40px;
+.search-result{
+    padding-bottom: 15px;
 }
-.location-details img{
+.search-result h5 {
+    padding-right: 65px;
+}
+.search-result img{
     width: 50px;
-    margin-right: 7px;
-}
-.location-map img{
-    width: 100%;
-    height: 200px;
-}
-form span{
-    color: red;
+    margin-right: 10px;
 }
