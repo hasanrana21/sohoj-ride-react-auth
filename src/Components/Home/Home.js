@@ -10,10 +10,12 @@ const Home = () => {
         setVehicles(fakeData);
     }, [])
     return (
-            <div class="all-cards" style={{backgroundImage: `url(${backgroundImg})`, backgroundSize: 'cover', backgroundPosition: 'bottom'}}>
-                {
-                    vehicles.map(vehicle => <Card vehicle={vehicle} key={vehicle.id}></Card> )
-                }
+            <div class="row">
+                <div class="all-cards" style={{backgroundImage: `url(${backgroundImg})`, backgroundSize: 'cover', backgroundPosition: 'bottom', height: '88vh'}}>
+                    {
+                        vehicles.map(vehicle => <Card vehicle={vehicle} key={vehicle.id}></Card> )
+                    }
+                </div>
             </div>
     );
 };

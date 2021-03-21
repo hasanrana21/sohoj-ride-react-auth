@@ -6,16 +6,19 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+
 
 if(!firebase.apps.length){
   firebase.initializeApp(firebaseConfig);
 }
-
 const Login = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const history = useHistory();
   const location = useLocation();
-  let { from } = location.state || { from: { pathname: "/" } };
+  let { from } = location.state || { from: { pathname: "/destinate" } };
 
   const [newUser, setNewUser] = useState(false);
   const [user, setUser] = useState({
@@ -117,8 +120,8 @@ const updateUserName = name =>{
 
   return (
     <div class="form-area">
-      <input type="checkbox" name="newUser" onChange={() => setNewUser(!newUser)} id=""/>
-      <label htmlFor="newUser">New User Sign {newUser ? 'Up' : 'In'}</label>
+      {/* <input type="checkbox" name="newUser" onChange={() => setNewUser(!newUser)} id=""/>
+      <label htmlFor="newUser">New User Sign {newUser ? 'Up' : 'In'}</label> */}
       <form onSubmit={handleSubmit}>
         {newUser && <input type="text" name="name" onBlur={handleBlur} placeholder="Your name" />}
         <br/>
@@ -127,13 +130,14 @@ const updateUserName = name =>{
         <input type="password" name="password" placeholder="your password" onBlur={handleBlur} id="" required/>
         <br/>
         <input type="submit" value={newUser ? 'Sign Up' : 'Sign In'}/>
+        <p>Already have an Account?<a href="#"> <span onClick={()=> setNewUser(!newUser)}>{newUser ? 'Log In' : 'Create New Account'}</span> </a></p>
       </form>
       <p style={{color: 'red'}}>{user.error}</p>
       {
         user.success && <p style={{color: 'green'}}>User {newUser ? 'Created' : 'Logged In'} Successfully</p>
       }
       <br/><br/>
-      <button onClick={handleGitHubSignIn}>GitHub Sign In</button>
+      <button class="social-button" onClick={handleGitHubSignIn}><span class="social-icon"><FontAwesomeIcon icon={faGithub} /></span><span class="social-txt">GitHub Sign In</span></button>
     </div>
   );
 };

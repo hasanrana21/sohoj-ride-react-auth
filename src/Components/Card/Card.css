@@ -3,11 +3,13 @@
     height: 150px;
 }
 .single-card{
-    border: 2px solid red;
-    background-color: #fff;
+    background-color: #74d8f1;
     border-radius: 10px;
     width: 250px;
     height: 250px;
     margin: 25px;
     padding: 15px;
+    display: inline-block;
+    text-align: center;
+    margin-left: 52px;
 }

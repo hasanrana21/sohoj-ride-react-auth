@@ -11,7 +11,7 @@ import { faAccessibleIcon } from '@fortawesome/free-brands-svg-icons';
 const DestinateDetails = (props) => {
     const {firstName} = useParams();
     console.log(props.singleVehicle);
-    const {image} = props.singleVehicle;
+    // const {image} = props.singleVehicle;
 
     let vehicleImg = "";
     if(firstName === "CAR"){

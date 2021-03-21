@@ -11,12 +11,10 @@ const Destinate = () => {
     useEffect(()=>{
         setVehicles(fakeData);
     }, [])
-    const { register, handleSubmit, watch, errors } = useForm();
+    const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => console.log(data);
 
-    const handleLocationSubmit = () => {
-        
-    }
+    
     return (
         <>
             <div class="row container-fluid search-field">
@@ -27,6 +25,7 @@ const Destinate = () => {
                         <input name="from" placeholder="Location1" ref={register({ required: true })} />
                         <br/>
                         {errors.from && <span >Please put info From Where</span>}
+                        <br/>
                         <label htmlFor="to">Pick To</label>
                         <br/>
                         <input name="to" placeholder="Location2"  ref={register({ required: true })} />
@@ -34,14 +33,14 @@ const Destinate = () => {
                         {errors.to && <span>Please put info Where to Go</span>}
                         <br/>
                         
-                        <input onClick={handleLocationSubmit} type="submit" value="Search" />
+                        <input type="submit" value="Search" />
                     </form>
                 </div>
                 <div class="location-map col-md-8">
                     <img src={map} alt=""/>
                 </div>
             </div>
-            <div className="destinate-details-map">
+            <div className="destinate-details-result">
             {
                 vehicles.map(singleVehicle => <DestinateDetails singleVehicle={singleVehicle} key={singleVehicle.id}></DestinateDetails>)
             }
