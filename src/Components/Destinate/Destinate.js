@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import fakeData from '../../fakeData/data.json';
 import DestinateDetails from '../DestinateDetails/DestinateDetails';
-import mapImg from '../../images/Map.png';
+// import mapImg from '../../images/Map.png';
 import './Destinate.css';
+import Map from '../Map/Map';
 
 const Destinate = () => {
     const [vehicles, setVehicles] = useState([]);
@@ -44,9 +45,10 @@ const Destinate = () => {
                     </div>
                 </div>
                 <div class="location-map col-md-8">
-                    <img src={mapImg} alt=""/>
+                    {/* <img src={mapImg} alt=""/> */}
                     {/* <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfv9aQI58KZaGfyckjpYAfve80GTLF3xU&callback=initMap"
                     type="text/javascript"></script> */}
+                    <Map></Map>
                 </div>
             </div>
             
